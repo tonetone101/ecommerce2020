@@ -7,13 +7,13 @@ const uuidv1 = require('uuid/v1')
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
-        trim: trim,
+        trim: true,
         require: true,
         maxLength: 32
     },
     email: {
         type: String,
-        trim: trim,
+        trim: true,
         require: true,
         unique: 32
     },
@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
     },
     about: {
         type: String,
-        trim: trim,
+        trim: true,
     },
     salt: String,
     role: {
@@ -40,13 +40,13 @@ const userSchema = new mongoose.Schema({
 })
 
 // virtual field
-userSchema.vitual('password')
-.set(function(password) {
+userSchema.virtual('password')
+    .set(function(password) {
     this._password = password
     this.salt = uuidv1()
     this.hashed_password = this.encryptPassword(password)
 })
-.get(function() {
+    .get(function() {
     return this._password
 })
 
