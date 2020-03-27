@@ -57,3 +57,8 @@ exports.signout = (req, res) => {
         message: 'Sign out successful'
     })
 }
+
+exports.requireSignin = expressJwt({
+    secret: process.env.JWT_SECRET,
+    userProperty: 'auth'
+})

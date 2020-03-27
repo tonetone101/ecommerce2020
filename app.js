@@ -22,10 +22,10 @@ app.use(cookieParser())
 app.use(expressValidator())
 
 // import routes
-const userRoutes = require('./routes/user')
+const authRoutes = require('./routes/auth')
 
 //routes
-app.use('/', userRoutes)
+app.use('/', authRoutes)
 
 
 const port = process.env.PORT || 5000
