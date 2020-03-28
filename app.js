@@ -25,11 +25,13 @@ app.use(expressValidator())
 const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
 const categoryRoutes = require('./routes/category')
+const productRoutes = require('./routes/product')
 
 //routes
 app.use('/', authRoutes)
 app.use('/', userRoutes)
 app.use('/', categoryRoutes)
+app.use('/', productRoutes)
 
 const port = process.env.PORT || 5000
 
