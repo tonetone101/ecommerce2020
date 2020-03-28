@@ -24,11 +24,12 @@ app.use(expressValidator())
 // import routes
 const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
+const categoryRoutes = require('./routes/category')
 
 //routes
 app.use('/', authRoutes)
 app.use('/', userRoutes)
-
+app.use('/', categoryRoutes)
 
 const port = process.env.PORT || 5000
 
