@@ -11,7 +11,7 @@ exports.productById = (req, res, next, id) => {
     .exec((err, product) => {
       if (err || !product) {
         return res.status(400).json({
-          error: "Product not found"
+          error: "Product not found",
         });
       }
       req.product = product;
@@ -32,7 +32,7 @@ exports.create = (req, res) => {
   form.parse(req, (err, fields, files) => {
     if (err) {
       return res.status(400).json({
-        error: "Image could not be uploaded"
+        error: "Image could not be uploaded",
       });
     }
 
@@ -48,7 +48,7 @@ exports.create = (req, res) => {
       !shipping
     ) {
       return res.status(400).json({
-        error: "All fields are required"
+        error: "All fields are required",
       });
     }
 
@@ -59,7 +59,7 @@ exports.create = (req, res) => {
       // 1mb = 1000000
       if (files.photo.size > 1000000) {
         return res.status(400).json({
-          error: "Image should be less than 1mb in size"
+          error: "Image should be less than 1mb in size",
         });
       }
 
@@ -71,7 +71,7 @@ exports.create = (req, res) => {
       if (err) {
         console.log(err);
         return res.status(400).json({
-          error: errorHandler(err)
+          error: errorHandler(err),
         });
       }
       res.json(result);
@@ -85,11 +85,11 @@ exports.remove = (req, res) => {
     if (err) {
       console.log(err);
       return res.status(400).json({
-        error: errorHandler(err)
+        error: errorHandler(err),
       });
     }
     res.json({
-      message: "Deleted successfully"
+      message: "Deleted successfully",
     });
   });
 };
@@ -100,7 +100,7 @@ exports.update = (req, res) => {
   form.parse(req, (err, fields, files) => {
     if (err) {
       return res.status(400).json({
-        error: "Image could not be uploaded"
+        error: "Image could not be uploaded",
       });
     }
 
@@ -109,7 +109,7 @@ exports.update = (req, res) => {
 
     if (!name || !description || !price || !category || !quanity || !shipping) {
       return res.status(400).json({
-        error: "All fields are required"
+        error: "All fields are required",
       });
     }
 
@@ -123,7 +123,7 @@ exports.update = (req, res) => {
       // 1mb = 1000000
       if (files.photo.size > 1000000) {
         return res.status(400).json({
-          error: "Image should be less than 1mb in size"
+          error: "Image should be less than 1mb in size",
         });
       }
 
@@ -135,7 +135,7 @@ exports.update = (req, res) => {
       if (err) {
         console.log(err);
         return res.status(400).json({
-          error: errorHandler(err)
+          error: errorHandler(err),
         });
       }
       res.json(result);
@@ -160,7 +160,7 @@ exports.list = (req, res) => {
     .exec((err, data) => {
       if (err) {
         return res.status(400).json({
-          error: "Product not found"
+          error: "Product not found",
         });
       }
       res.json(data);
@@ -178,7 +178,7 @@ exports.listRelated = (req, res) => {
     .exec((err, products) => {
       if (err) {
         return res.status(400).json({
-          error: "Product not found"
+          error: "Product not found",
         });
       }
       res.json(products);
@@ -189,7 +189,7 @@ exports.listCategories = (req, res) => {
   Product.distinct("category", {}, (err, categories) => {
     if (err) {
       return res.status(400).json({
-        error: "Categories not found"
+        error: "Categories not found",
       });
     }
     res.json(categories);
@@ -221,7 +221,7 @@ exports.listBySearch = (req, res) => {
         // lte - less than
         findArgs[key] = {
           $gte: req.body.filters[key][0],
-          $lte: req.body.filters[key][1]
+          $lte: req.body.filters[key][1],
         };
       } else {
         findArgs[key] = req.body.filters[key];
@@ -238,12 +238,12 @@ exports.listBySearch = (req, res) => {
     .exec((err, data) => {
       if (err) {
         return res.status(400).json({
-          error: "Products not found"
+          error: "Products not found",
         });
       }
       res.json({
         size: data.length,
-        data
+        data,
       });
     });
 };
@@ -264,7 +264,7 @@ exports.listSearch = (req, res) => {
   if (req.query.search) {
     query.name = {
       $regex: req.query.search,
-      $options: "i"
+      $options: "i",
     };
     // assign category value to query.category
     if (req.query.category && req.query.category != "ALL") {
@@ -275,10 +275,30 @@ exports.listSearch = (req, res) => {
     Product.find(query, (err, products) => {
       if (err) {
         return res.status(400).json({
-          error: errorHandler(err)
+          error: errorHandler(err),
         });
       }
       res.json(products);
     }).select("-photo");
   }
+};
+
+exports.decreaseQuanity = (req, res, next) => {
+  // using updateOne from mongoose, when user makes user, quanity of item goes down and sold goes up
+  let bulkOps = req.body.order.products.map((item) => {
+    return {
+      updateOne: {
+        filter: { _id: item._id },
+        update: { $inc: { quanity: -item.count, sold: +item.count } },
+      },
+    };
+  });
+  Product.bulkWrite(bulkOps, {}, (error, product) => {
+    if (error) {
+      return res.status(400).json({
+        error: "Count not update product",
+      });
+    }
+    next();
+  });
 };
