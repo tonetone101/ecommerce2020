@@ -31,6 +31,7 @@ const userRoutes = require("./routes/user");
 const categoryRoutes = require("./routes/category");
 const productRoutes = require("./routes/product");
 const braintreeRoutes = require("./routes/braintree");
+const orderRoutes = require("./routes/order");
 
 //routes
 app.use("/", authRoutes);
@@ -38,6 +39,7 @@ app.use("/", userRoutes);
 app.use("/", categoryRoutes);
 app.use("/", productRoutes);
 app.use("/", braintreeRoutes);
+app.use("/", orderRoutes);
 
 const port = process.env.PORT || 5000;
 
