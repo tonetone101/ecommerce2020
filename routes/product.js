@@ -12,7 +12,7 @@ const {
   remove,
   update,
   list,
-  listRelated
+  listRelated,
 } = require("../controllers/product");
 const { requireSignin, isAdmin, isAuth } = require("../controllers/auth");
 const { userById } = require("../controllers/user");
