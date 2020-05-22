@@ -100,7 +100,7 @@ const Orders = () => {
 
           {/*maps thru the orders */}
           {orders.map((o, oIndex) => {
-            console.log(o.user);
+            console.log(orders);
             return (
               <div
                 className="mt-5"
