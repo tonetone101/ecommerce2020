@@ -2,7 +2,7 @@ import { API } from "../config";
 
 exports.signup = (user) => {
   // console.log(user)
-  return fetch(`${API}/signup`, {
+  return fetch(`/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -20,7 +20,7 @@ exports.signup = (user) => {
 
 exports.signin = (user) => {
   // console.log(user)
-  return fetch(`${API}/signin`, {
+  return fetch(`/signin`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -52,7 +52,7 @@ exports.signout = (next) => {
     next();
   }
   // api call
-  return fetch(`${API}/signout`, {
+  return fetch(`/signout`, {
     method: "GET",
   })
     .then((res) => {
@@ -77,7 +77,7 @@ exports.isAuthenticated = () => {
 };
 
 export const read = (userId, token) => {
-  return fetch(`${API}/user/${userId}`, {
+  return fetch(`/user/${userId}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -92,7 +92,7 @@ export const read = (userId, token) => {
 };
 
 export const update = (userId, token, user) => {
-  return fetch(`${API}/user/${userId}`, {
+  return fetch(`/user/${userId}`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
@@ -119,7 +119,7 @@ export const updateUser = (user, next) => {
 };
 
 export const getPurchaseHistory = (userId, token) => {
-  return fetch(`${API}/orders/by/user/${userId}`, {
+  return fetch(`/orders/by/user/${userId}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
