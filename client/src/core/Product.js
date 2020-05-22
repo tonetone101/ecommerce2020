@@ -47,6 +47,7 @@ const Product = (props) => {
         <div className="col-8">
           {product && product.description && (
             <Card
+              url="product"
               showViewProductButton={false}
               product={product}
               runProduct={runProduct}
@@ -61,6 +62,7 @@ const Product = (props) => {
               <Card
                 key={i}
                 product={p}
+                url="product"
                 runProduct={runProduct}
                 setRunProduct={setRunProduct}
               />
