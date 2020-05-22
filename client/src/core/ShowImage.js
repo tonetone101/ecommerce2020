@@ -6,7 +6,7 @@ const ShowImage = ({ item, url }) => {
     <div className="product-img">
       <img
         className="mb-3"
-        src={`/product/photo/${item._id}`}
+        src={`/api/product/photo/${item._id}`}
         alt={item.name}
         style={{ maxHeight: "400px", maxWidth: "200px" }}
       />
