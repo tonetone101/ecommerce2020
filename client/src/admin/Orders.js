@@ -99,7 +99,7 @@ const Orders = () => {
           {showOrdersLength()}
 
           {/*maps thru the orders */}
-          {orders.map((o, oIndex) => {
+          {orders.reverse().map((o, oIndex) => {
             console.log(orders);
             return (
               <div
