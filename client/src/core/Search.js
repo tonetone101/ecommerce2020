@@ -8,19 +8,19 @@ const Search = () => {
     cargory: "",
     search: "",
     results: [],
-    searched: false
+    searched: false,
   });
 
   const { categories, category, search, results, searched } = data;
 
   const loadCategories = () => {
-    getCategories().then(data => {
+    getCategories().then((data) => {
       if (data.error) {
         console.log(data.error);
       } else {
         setData({
           ...data,
-          categories: data
+          categories: data,
         });
       }
     });
@@ -34,27 +34,27 @@ const Search = () => {
     if (search) {
       list({
         search: search || undefined,
-        category: category
-      }).then(res => {
+        category: category,
+      }).then((res) => {
         if (res.error) {
           console.log(res.error);
         } else {
           setData({
             ...data,
             results: res,
-            searched: true
+            searched: true,
           });
         }
       });
     }
   };
 
-  const searchSubmit = e => {
+  const searchSubmit = (e) => {
     e.preventDefault();
     searchData();
   };
 
-  const handleChange = name => event => {
+  const handleChange = (name) => (event) => {
     setData({ ...data, [name]: event.target.value, searched: false });
   };
 
@@ -74,7 +74,7 @@ const Search = () => {
     return (
       <div>
         <h2 className="mt-4 mb-4">{searchMessage(searched, results)}</h2>
-        <div className="row">
+        <div className="row" id="searchCards">
           {results.map((product, i) => (
             <Card key={i} product={product} />
           ))}

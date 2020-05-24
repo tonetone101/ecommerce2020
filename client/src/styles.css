@@ -72,6 +72,10 @@
     margin-left: 50px;
   }
 
+  #searchCards {
+    width: 300px;
+  }
+
   #shopCards {
     width: 600px;
     display: flex;
