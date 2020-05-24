@@ -3,7 +3,7 @@ const User = require("../models/user");
 
 const { errorHandler } = require("../helpers/dbErrorHandlers");
 const sgMail = require("@sendgrid/mail");
-//require("dotenv").config();
+require("dotenv").config();
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
