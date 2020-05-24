@@ -34,7 +34,7 @@ const Shop = () => {
   };
 
   const loadFilterResults = (newFilters) => {
-    // console.log(newFilters)
+    console.log(newFilters);
     getFilteredProducts(skip, limit, newFilters).then((data) => {
       if (data.error) {
         setError(data.error);
@@ -131,7 +131,7 @@ const Shop = () => {
 
         <div className="col-8">
           <h2 className="mb-4">Products</h2>
-          <div className="row">
+          <div className="row" id="shopCards">
             {filteredResults.map((product, i) => {
               return (
                 <div key={i} className="col-4 mb-3">
@@ -140,7 +140,6 @@ const Shop = () => {
                     runShop={runShop}
                     setRunShop={setRunShop}
                   />
-                  ;
                 </div>
               );
             })}

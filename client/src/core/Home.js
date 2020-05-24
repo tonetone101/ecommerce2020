@@ -32,8 +32,20 @@ const Home = () => {
     });
   };
 
+  //const loadMore = () => {
+  //  getProducts("createdAt").then((data) => {
+  //    if (data.error) {
+  //      setError(data.error);
+  //    } else {
+  //      setProductsByArrival(data);
+  //      setSize(data.size);
+  //      setSkip(0);
+  //    }
+  //  });
+  //};
+
   useEffect(() => {
-    loadProductsByArrival();
+    loadProductsByArrival(productsByArrival);
     loadProductsBySell();
   }, [runHome]);
 
@@ -45,21 +57,29 @@ const Home = () => {
     >
       <Search />
       <h2 className="mb-4">New Arrivals</h2>
-      <div className="row">
+      <div className="row" id="homeCards">
         {productsByArrival.map((product, i) => (
           <div key={i} className="col-4 mb-3">
-            <Card product={product} setRunhome={setRunhome} runHome={runHome} />
-            ;
+            <Card
+              id="card"
+              product={product}
+              setRunhome={setRunhome}
+              runHome={runHome}
+            />
           </div>
         ))}
       </div>
 
       <h2 className="mb-4">Best Sellers</h2>
-      <div className="row">
+      <div className="row" id="homeCards">
         {productsBySell.map((product, i) => (
           <div key={i} className="col-4 mb-3">
-            <Card product={product} setRunhome={setRunhome} runHome={runHome} />
-            ;
+            <Card
+              id="card"
+              product={product}
+              setRunhome={setRunhome}
+              runHome={runHome}
+            />
           </div>
         ))}
       </div>

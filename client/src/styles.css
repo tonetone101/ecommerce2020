@@ -64,6 +64,33 @@
   .jumbotron h2 {
     margin-top: 10px;
   }
+  #shopCards {
+    margin-right: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #homeCards,
+  h2 {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  #homeCards {
+    width: 600px;
+  }
+
+  #product-img {
+    width: 100px;
+  }
+  .card {
+    width: 200px;
+  }
 }
 
 /**
