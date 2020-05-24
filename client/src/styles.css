@@ -65,8 +65,13 @@
     margin-top: 10px;
   }
   #card {
-    margin-right: 400px;
+    margin-right: 300px;
   }
+
+  #productTitle {
+    margin-left: 50px;
+  }
+
   #shopCards {
     width: 600px;
     display: flex;

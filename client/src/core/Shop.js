@@ -130,7 +130,9 @@ const Shop = () => {
         </div>
 
         <div className="col-8">
-          <h2 className="mb-4">Products</h2>
+          <h2 className="mb-4" id="productTitle">
+            Products
+          </h2>
           <div className="row" id="shopCards">
             {filteredResults.map((product, i) => {
               return (
