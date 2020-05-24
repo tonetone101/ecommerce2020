@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const braintree = require("braintree");
-require("dotenv").config();
+// require("dotenv").config();
 
 //to connect with braintree we need credentials to genreate a token
 const gateway = braintree.connect({
