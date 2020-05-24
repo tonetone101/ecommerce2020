@@ -134,7 +134,7 @@ const Shop = () => {
           <div className="row" id="shopCards">
             {filteredResults.map((product, i) => {
               return (
-                <div key={i} className="col-4 mb-3">
+                <div key={i} id="card" className="col-4 mb-3">
                   <Card
                     product={product}
                     runShop={runShop}

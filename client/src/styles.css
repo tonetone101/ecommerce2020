@@ -64,15 +64,18 @@
   .jumbotron h2 {
     margin-top: 10px;
   }
+  #card {
+    margin-right: 400px;
+  }
   #shopCards {
-    margin-right: 100px;
+    width: 600px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-content: center;
     flex-direction: column;
   }
 
-  #homeCards,
+  /*#homeCards,
   h2 {
     margin: auto;
     display: flex;
@@ -80,16 +83,25 @@
     align-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-  }
+  }*/
   #homeCards {
     width: 600px;
   }
-
+  /*#menu,
+  #layout {
+    width: 750px;
+  }*/
   #product-img {
     width: 100px;
   }
-  .card {
-    width: 200px;
+  .card,
+  .card-header,
+  .card-body {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }
 
