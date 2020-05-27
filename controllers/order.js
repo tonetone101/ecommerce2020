@@ -6,7 +6,7 @@ const sgMail = require("@sendgrid/mail");
 require("dotenv").config();
 
 sgMail.setApiKey(
-  "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"
+  "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"
 );
 
 exports.orderById = (req, res, next, id) => {
@@ -78,7 +78,7 @@ exports.create = (req, res) => {
     // email to buyer
     const emailData2 = {
       to: "antoniokeo@codeworldinc.org",
-      from: "sleav143@gmail.com",
+      from: "keoantonio1@gmail.com",
       subject: `You order is in process`,
       html: `
             <h1>Hey ${req.profile.name}/${
