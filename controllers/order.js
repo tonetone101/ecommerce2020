@@ -5,9 +5,7 @@ const { errorHandler } = require("../helpers/dbErrorHandlers");
 const sgMail = require("@sendgrid/mail");
 require("dotenv").config();
 
-sgMail.setApiKey(
-  "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"
-);
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 exports.orderById = (req, res, next, id) => {
   Order.findById(id)
